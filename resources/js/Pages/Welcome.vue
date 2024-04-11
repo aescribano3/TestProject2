@@ -1,5 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
+import { CKEditor } from '@ckeditor/ckeditor5-vue';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 defineProps({
     canLogin: {
@@ -15,6 +18,31 @@ function handleImageError() {
     document.getElementById('docs-card')?.classList.add('!row-span-1');
     document.getElementById('docs-card-content')?.classList.add('!flex-row');
     document.getElementById('background')?.classList.add('!hidden');
+}
+
+const editorData = ref('');
+const editor = ClassicEditor;
+const editorConfig = {
+  extraPlugins: [customPlugin],
+  ckfinder: {
+  },
+};
+
+function customPlugin(editor) {
+  editor.model.document.on('change:data', () => {
+    editor.editing.view.change(writer => {
+      writer.setStyle(
+        'padding-left',
+        '20px',
+        editor.editing.view.document.getRoot()
+      );
+      writer.setStyle(
+        'color',
+        'black',
+        editor.editing.view.document.getRoot()
+      );
+    });
+  });
 }
 </script>
 
@@ -330,7 +358,7 @@ function handleImageError() {
                         </div>
                     </div>
                 </main>
-
+                <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                 <footer class="py-16 text-center text-sm text-black dark:text-white/70">
                     Test Project 2 - aescribano
                 </footer>
