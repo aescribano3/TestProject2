@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pop {
+    max-width: 95%;
+    height: auto;
+    margin: 0 auto; 
+    margin-top: 10px;
+    
+  }
+  
+  .popch {
+    margin-top: 10px;
+    min-height: 40rem;
+    
+  }
