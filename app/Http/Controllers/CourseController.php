@@ -81,4 +81,10 @@ class CourseController extends Controller
         $curso->delete();
         return redirect()->route('cursos.index');
     }
+
+    public function json(){
+        $cursos = Course::all();
+        dd($cursos->toJson());
+        return response()->json($cursos);
+    }
 }

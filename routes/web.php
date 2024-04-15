@@ -5,13 +5,14 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ResourceController;
-use App\Models\Resource;
+use App\Models\Course;
 use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register')
+        'canRegister' => Route::has('register'),
+        'cursos' => Course::orderBy('name', 'asc')->get()
     ]);
 });
 
@@ -28,8 +29,8 @@ Route::middleware('auth')->group(function () {
 Route::resource("/cursos", CourseController::class)->middleware(['auth', 'verified']);
 Route::resource("/recursos", ResourceController::class)->middleware(['auth', 'verified']);
 
-Route::get('/recursos/{curso}', [ResourceController::class, 'indexId'])
-    ->middleware(['auth', 'verified'])
-    ->name('recursos.indexId');
+//No entiendo porque estas dos rutas no funcionan
+Route::get('/recursos/{curso}', [ResourceController::class, 'indexId'])->middleware(['auth', 'verified'])->name('recursos.indexId');
+Route::get('/cursos/json', [CourseController::class, 'json'])->middleware(['auth', 'verified'])->name('cursos.json');
 
 require __DIR__.'/auth.php';

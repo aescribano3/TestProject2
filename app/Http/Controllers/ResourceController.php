@@ -23,6 +23,8 @@ class ResourceController extends Controller
     
     public function indexId(Course $curso)
     {
+        dd($curso);
+        //$recursos = Course::resources()->get();
         $recursos = Resource::where('courseId', $curso->id)->get();
     
         return Inertia::render('Resources/Index', [

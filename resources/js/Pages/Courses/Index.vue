@@ -57,7 +57,7 @@ const CloseDeleteModal = () => {
                             <th>Visibilitat </th>
                             <th><Link :href="route('cursos.create')"><PrimaryButton class="btn btn-success">Crear</PrimaryButton></Link></th>
                             <th></th>
-                            <th></th>
+                            <th><Link :href="route('cursos.json')"><button class="btn btn-info">JSON</button></Link></th>
                         </tr>
                     </thead>
                     <tbody class="text-black">
