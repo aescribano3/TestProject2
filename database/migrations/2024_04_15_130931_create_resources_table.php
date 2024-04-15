@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->longText('content');
             $table->boolean('visible')->default(true);
+            $table->unsignedBigInteger('courseId');
+            $table->foreign('courseId')->references('id')->on('courses');
             $table->timestamps();
         });
     }

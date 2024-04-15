@@ -61,12 +61,20 @@ function customPlugin(editor) {
                 <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
                     <div class="flex lg:justify-center lg:col-start-2">
 
-                        <img src="Logo/TestLogo.png" class="h-28" alt="Logo">
+                        <img src="Logo/TestLogo.png" class="h-12" alt="Logo">
 
                     </div>
                     <nav v-if="canLogin" class="-mx-3 flex flex-1 justify-end">
                         <!--TODO Poner links pagians-->
                         
+                        <Link
+                            v-if="$page.props.auth.user"
+                            :href="route('cursos.index')"
+                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                        >
+                            Cursos
+                        </Link>
+
                         <Link
                             v-if="$page.props.auth.user"
                             :href="route('dashboard')"
