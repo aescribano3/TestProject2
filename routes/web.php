@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ResourceController;
+use App\Models\Resource;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -24,5 +26,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource("/cursos", CourseController::class)->middleware(['auth', 'verified']);
+Route::resource("/recursos", ResourceController::class)->middleware(['auth', 'verified']);
+
+Route::get('/recursos/{curso}', [ResourceController::class, 'indexId'])
+    ->middleware(['auth', 'verified'])
+    ->name('recursos.indexId');
 
 require __DIR__.'/auth.php';

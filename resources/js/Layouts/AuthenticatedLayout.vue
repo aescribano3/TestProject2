@@ -38,6 +38,12 @@ const showingNavigationDropdown = ref(false);
                                     Cursos
                                 </NavLink>
                             </div>
+                            <!--TODO eliminar-->
+                            <div class=" space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('recursos.index')" :active="route().current('dashboard')">
+                                    Recursos
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">

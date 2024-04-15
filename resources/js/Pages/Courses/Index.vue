@@ -57,12 +57,14 @@ const CloseDeleteModal = () => {
                             <th>Visibilitat </th>
                             <th><Link :href="route('cursos.create')"><PrimaryButton class="btn btn-success">Crear</PrimaryButton></Link></th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody class="text-black">
                         <tr v-if="props.cursos.length == 0">
                             <th></th>
                             <td>No hay cursos</td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -78,6 +80,7 @@ const CloseDeleteModal = () => {
                             <td v-else>No visible</td>
                             <td><Link :href="route('cursos.edit', curso.id)"><button class="btn btn-info">Editar</button></Link></td>
                             <td><DangerButton @click="() => OpenDeleteModal(curso.id)" class="btn btn-error">Eliminar</DangerButton></td>
+                            <td><Link :href="route('recursos.indexId',curso.id)"><button class="btn btn-info">Recursos</button></Link></td>
                         </tr>
                     </tbody>
                 </table>
